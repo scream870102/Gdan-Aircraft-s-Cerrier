@@ -105,9 +105,13 @@ public class Bullet : MonoBehaviour, IControllable
             elapsed += Time.deltaTime;
             if (elapsed >= nextTime)
             {
-                var dir = Math.RandomVec2(1).normalized;
-                var vel = dir * velocity;
-                rb.velocity = vel;
+                var oldVel = rb.velocity.normalized;
+                var y = Random.Range(-1f, 1f);
+                oldVel.y = y;
+                var newVel = oldVel.normalized;
+                // var dir = Math.RandomVec2(1).normalized;
+                // var vel = dir * velocity;
+                rb.velocity = newVel * velocity;
                 nextTime = elapsed + offset;
             }
             await UniTask.DelayFrame(1);
