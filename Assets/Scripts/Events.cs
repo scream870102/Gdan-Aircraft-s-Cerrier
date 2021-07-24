@@ -9,3 +9,12 @@ class OnBulletHit : IDomainEvent
         Target = gameObject;
     }
 }
+
+class OnItemGet : IDomainEvent
+{
+    public ItemType Type { get; private set; }
+    public OnItemGet(ItemType type)
+    {
+        Type = type;
+    }
+}

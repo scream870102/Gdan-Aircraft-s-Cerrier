@@ -78,7 +78,7 @@ public class Bullet : MonoBehaviour, IControllable
     }
 
     //回應子彈變形
-    public void BulletTransform()
+    public void BulletDeform()
     {
         sr.sprite = secondSprite;
     }
@@ -90,7 +90,7 @@ public class Bullet : MonoBehaviour, IControllable
     }
 
     //搖晃子彈
-    public async UniTaskVoid ShakingBullet(float length, float offset)
+    public async UniTaskVoid PendulumBullet(float length, float offset)
     {
         float elapsed = 0f;
         float nextTime = elapsed + offset;

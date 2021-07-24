@@ -29,12 +29,14 @@ public class TmpPlayer : MonoBehaviour
     void OnEnable()
     {
         input.GamePlay.Bullet1.performed += HandleBtnConfirmed;
+        DomainEvents.Register<OnBulletHit>(HandleBulletHit);
     }
 
 
     void OnDisable()
     {
         input.GamePlay.Bullet1.performed -= HandleBtnConfirmed;
+        DomainEvents.UnRegister<OnBulletHit>(HandleBulletHit);
     }
 
 
@@ -42,7 +44,7 @@ public class TmpPlayer : MonoBehaviour
     {
         foreach (var b in bullets)
         {
-            b.BulletTransform();
+            b.BulletDeform();
         }
         if (bullets.Count == 0)
         {
@@ -64,4 +66,13 @@ public class TmpPlayer : MonoBehaviour
         // bullet.ShakingBullet(5f, 1f);
 
     }
+
+
+    void HandleBulletHit(OnBulletHit e)
+    {
+        if(e.Target==gameObject){
+            //GameOver
+        }
+    }
+
 }
