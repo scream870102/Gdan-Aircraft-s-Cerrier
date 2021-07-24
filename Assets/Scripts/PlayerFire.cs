@@ -14,8 +14,9 @@ public class PlayerFire
     private float radiusBetweenBullet;
     private bool isLeft;
 
-    List<Bullet> bullets = null;
-    Bullet currentControl = null;
+    public List<Bullet> bullets = null;
+    public Bullet currentControl = null;
+    public bool BulletLeft = false;
     
 
     ScaledTimer fireTimer;
@@ -36,6 +37,7 @@ public class PlayerFire
 
     public void UpdateBullet()
     {
+        
         if(fireTimer.IsFinished)
         {
             RemoveBullet();
@@ -47,23 +49,26 @@ public class PlayerFire
     void RemoveBullet()
     {
         for(int i = bullets.Count - 1; i >= 0; i--)
-        {
-            
+        {            
             if(bullets[i].IsUnderControll)
             {
                 bullets[i].EnableControll(false, player.PlayerInput);
                 player.EnableControll(true, player.PlayerInput);
+                currentControl = null;
+                Debug.Log("removeBullet");
             }
             var bul = bullets[i];
             bullets.RemoveAt(i);
             if(bul.IsEnable) bul.EnableBullet(false);
         }
+        BulletLeft = false;
     }
 
     void InitBullet()
     {
         if(bullets.Count == 0)
         {
+            BulletLeft = true;
             Vector3 startPoint = Quaternion.Euler(0, 0, bulletAmount * radiusBetweenBullet / 2) * (isLeft ? -player.transform.right : player.transform.right);
             
             for(int i = 0; i < bulletAmount; i++)
@@ -74,100 +79,63 @@ public class PlayerFire
                 bullet.EnableBullet(true, player.gameObject, dir, player.transform.position);
                 bullets.Add(bullet);
             }
-        }        
+        }
     }
 
 #region HandleBulletControl
 
     public void HandleBullet1Control(InputAction.CallbackContext ctx)
     {
-        if(!reverseTimer.IsFinished || bullets[0] == null || bullets.Count < 1) return;
-
-        if(currentControl == bullets[0])
-        {
-            //切換回自機
-            bullets[0].EnableControll(false, player.PlayerInput);
-            player.EnableControll(true, player.PlayerInput);
-            currentControl = null;
-        }
-        else
-        {
-            //切到子彈
-            if(currentControl != null) currentControl.EnableControll(false, player.PlayerInput);
-            bullets[0].EnableControll(true, player.PlayerInput);
-            player.EnableControll(false, player.PlayerInput);
-            currentControl = bullets[0];   
-        }        
-        reverseTimer.Reset();
+        HandleBulletControl(0);
     }
 
     public void HandleBullet2Control(InputAction.CallbackContext ctx)
     {
-        if(!reverseTimer.IsFinished || bullets.Count < 2 || bullets[1] == null) return;
-
-        if(currentControl == bullets[1])
-        {
-            //切換回自機
-            bullets[1].EnableControll(false, player.PlayerInput);
-            player.EnableControll(true, player.PlayerInput);
-            currentControl = null;
-        }
-        else
-        {
-            //切到子彈
-            if(currentControl != null) currentControl.EnableControll(false, player.PlayerInput);
-            bullets[1].EnableControll(true, player.PlayerInput);
-            player.EnableControll(false, player.PlayerInput);
-            currentControl = bullets[1];   
-        }        
-        reverseTimer.Reset();
+        HandleBulletControl(1);
     }
 
     public void HandleBullet3Control(InputAction.CallbackContext ctx)
     {
-        if(!reverseTimer.IsFinished || bullets.Count < 3 || bullets[2] == null) return;
-
-        if(currentControl == bullets[2])
-        {
-            //切換回自機
-            bullets[2].EnableControll(false, player.PlayerInput);
-            player.EnableControll(true, player.PlayerInput);
-            currentControl = null;
-        }
-        else
-        {
-            //切到子彈
-            if(currentControl != null) currentControl.EnableControll(false, player.PlayerInput);
-            bullets[2].EnableControll(true, player.PlayerInput);
-            player.EnableControll(false, player.PlayerInput);
-            currentControl = bullets[2];   
-        }        
-        reverseTimer.Reset();
+        HandleBulletControl(2);
     }
 
     public void HandleBullet4Control(InputAction.CallbackContext ctx)
     {
-        if(!reverseTimer.IsFinished || bullets.Count < 4 || bullets[3] == null ) return;
+        HandleBulletControl(3);
+    }
 
-        if(currentControl == bullets[3])
+#endregion
+
+    public void HandleBulletControl(int index)
+    {
+        if(!reverseTimer.IsFinished || bullets[index] == null || bullets.Count < index+1) return;
+
+        if(currentControl == bullets[index])
         {
             //切換回自機
-            bullets[3].EnableControll(false, player.PlayerInput);
+            if(player.IsDeform) bullets[index].BulletDeform(false);
+
+            bullets[index].EnableControll(false, player.PlayerInput);
             player.EnableControll(true, player.PlayerInput);
+            Debug.Log("reverse player");
             currentControl = null;
         }
         else
         {
             //切到子彈
-            if(currentControl != null) currentControl.EnableControll(false, player.PlayerInput);
-            bullets[3].EnableControll(true, player.PlayerInput);
-            player.EnableControll(false, player.PlayerInput);
-            currentControl = bullets[3];   
-        }        
-        reverseTimer.Reset(); 
-    }
+            if(player.IsDeform) bullets[index].BulletDeform(true);
 
-#endregion
+            if(currentControl != null) 
+            {
+                currentControl.BulletDeform(false);
+                currentControl.EnableControll(false, player.PlayerInput);
+            }
+            bullets[index].EnableControll(true, player.PlayerInput);
+            player.EnableControll(false, player.PlayerInput);
+            currentControl = bullets[index];
+        }        
+        reverseTimer.Reset();
+    }
 
     public float GetReverseTimer() => reverseTimer.Remain;
     public Bullet GetBullet() => currentControl;

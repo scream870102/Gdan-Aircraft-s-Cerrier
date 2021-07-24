@@ -1,5 +1,6 @@
 public enum ItemType
 {
+    Empty,
     Multicon,
     Invi,
     Pendulum,

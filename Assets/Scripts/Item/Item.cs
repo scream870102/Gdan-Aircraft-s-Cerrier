@@ -17,7 +17,7 @@ public class Item : MonoBehaviour
 
     public void InitItem()
     {
-        type = (ItemType)Random.Range(0, System.Enum.GetNames(typeof(ItemType)).Length);
+        type = (ItemType)Random.Range(1, System.Enum.GetNames(typeof(ItemType)).Length-1);
         sr.sprite = spriteDic[type];
     }
 

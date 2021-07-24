@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 3
   normalSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  secondSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  secondSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!50 &2350449747344507039
 Rigidbody2D:
   serializedVersion: 4

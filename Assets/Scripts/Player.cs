@@ -17,10 +17,14 @@ public class Player : MonoBehaviour, IControllable
     public PlayerInput PlayerInput {get; set;}
     public PlayerMovement PlayerMovement {get; set;}
     public PlayerFire PlayerFire {get; set;}
+    public PlayerItemHandler PlayerItemHandler {get; set;}
 
     private bool isLeft;
-    
+    public bool IsInvi = false;
+    public bool IsDeform = false;
+    public ItemType CurrentItem = ItemType.Empty;
     public bool IsUnderControll { get; set; }
+    [SerializeField]bool control;
 
     void Awake()
     {
@@ -31,6 +35,7 @@ public class Player : MonoBehaviour, IControllable
         
         PlayerMovement = new PlayerMovement(this, MoveSpeed, isLeft);
         PlayerFire = new PlayerFire(this, BulletPrefab, FireCd, BulletAmount, RadiusBetweenBullet, ReverseCd, isLeft);
+        PlayerItemHandler = new PlayerItemHandler(this);
 
         EnableControll(true, PlayerInput);
     }
@@ -42,6 +47,8 @@ public class Player : MonoBehaviour, IControllable
         PlayerInput.GamePlay.Bullet3.performed += PlayerFire.HandleBullet3Control;
         PlayerInput.GamePlay.Bullet4.performed += PlayerFire.HandleBullet4Control;
 
+        PlayerInput.GamePlay.Item.performed += PlayerItemHandler.OnItemPerformed;
+
         DomainEvents.Register<OnBulletHit>(HandleBulletHit);
         DomainEvents.Register<OnItemGet>(HandleItemGet);
     }
@@ -52,6 +59,8 @@ public class Player : MonoBehaviour, IControllable
         PlayerInput.GamePlay.Bullet2.performed -= PlayerFire.HandleBullet2Control;
         PlayerInput.GamePlay.Bullet3.performed -= PlayerFire.HandleBullet3Control;
         PlayerInput.GamePlay.Bullet4.performed -= PlayerFire.HandleBullet4Control;
+
+        PlayerInput.GamePlay.Item.performed -= PlayerItemHandler.OnItemPerformed;
 
         DomainEvents.UnRegister<OnBulletHit>(HandleBulletHit);
         DomainEvents.UnRegister<OnItemGet>(HandleItemGet);
@@ -68,8 +77,7 @@ public class Player : MonoBehaviour, IControllable
     {
         PlayerMovement.Move();
         PlayerFire.UpdateBullet();
-
-        Debug.Log(PlayerFire.GetBullet());
+        control = IsUnderControll;
     }
 
 
@@ -79,13 +87,13 @@ public class Player : MonoBehaviour, IControllable
         if (isEnable)
         {
             inputActions.GamePlay.Move.performed += PlayerMovement.OnMovementPerformed;
-            PlayerInput.GamePlay.Move.canceled += PlayerMovement.OnMovementCanceled;
+            inputActions.GamePlay.Move.canceled += PlayerMovement.OnMovementCanceled;
             IsUnderControll = true;
         }
         else
         {
             inputActions.GamePlay.Move.performed -= PlayerMovement.OnMovementPerformed;
-            PlayerInput.GamePlay.Move.canceled -= PlayerMovement.OnMovementCanceled;
+            inputActions.GamePlay.Move.canceled -= PlayerMovement.OnMovementCanceled;
             PlayerMovement.Movement = Vector2.zero;
             IsUnderControll = false;
         }
@@ -106,7 +114,9 @@ public class Player : MonoBehaviour, IControllable
         if (e.Getter == gameObject)
         {
             Debug.Log($"Get Item {e.Type.ToString()}");
+            CurrentItem = e.Type;
         }
+        PlayerItemHandler.AutoUseDebuffItem(e.Type);
     }
 
 }

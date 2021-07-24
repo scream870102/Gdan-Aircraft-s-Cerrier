@@ -9,6 +9,7 @@ public class PlayerMovement
     private Player player;
     private bool isLeft;
     public Vector2 Movement {get; set;}
+    public bool IsReversed { get; private set; } = false;
 
     private Rigidbody2D rb;
 
@@ -23,7 +24,7 @@ public class PlayerMovement
 
     public void Move()
     {
-        rb.velocity = Movement * moveSpeed;
+        if(rb) rb.velocity = (IsReversed ? -Movement : Movement) * moveSpeed;
         // player.transform.Translate(Movement * moveSpeed * Time.deltaTime);
     }
 
@@ -37,4 +38,8 @@ public class PlayerMovement
         Movement = Vector2.zero;
     }
 
+    public void ReverseControllDirection()
+    {
+        IsReversed = !IsReversed;
+    }
 }

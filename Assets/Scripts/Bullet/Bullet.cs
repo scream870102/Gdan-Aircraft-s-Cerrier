@@ -71,6 +71,8 @@ public class Bullet : MonoBehaviour, IControllable
     {
         if (other.gameObject.CompareTag("Player") && other.gameObject != owner)
         {
+            if(other.gameObject.GetComponent<Player>().IsInvi) return;
+
             DomainEvents.Raise(new OnBulletHit(other.gameObject));
             EnableBullet(false);
         }
@@ -81,9 +83,10 @@ public class Bullet : MonoBehaviour, IControllable
     }
 
     //回應子彈變形
-    public void BulletDeform()
+    public void BulletDeform(bool isDeform)
     {
-        sr.sprite = secondSprite;
+        if(isDeform) sr.sprite = secondSprite;
+        else sr.sprite = normalSprite;
     }
 
     //反轉子彈的操作方向
