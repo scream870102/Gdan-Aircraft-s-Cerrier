@@ -3,7 +3,9 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Scream.UniMO;
+#if UNITY_EDITOR
 using Scream.UniMO.Editor;
+#endif
 using Lean.Pool;
 
 public class TmpPlayer : MonoBehaviour
@@ -29,14 +31,18 @@ public class TmpPlayer : MonoBehaviour
     void OnEnable()
     {
         input.GamePlay.Bullet1.performed += HandleBtnConfirmed;
+        input.GamePlay.Move.performed += HandleMovePerformed;
         DomainEvents.Register<OnBulletHit>(HandleBulletHit);
+        DomainEvents.Register<OnItemGet>(HandleItemGet);
     }
 
 
     void OnDisable()
     {
         input.GamePlay.Bullet1.performed -= HandleBtnConfirmed;
+        input.GamePlay.Move.performed -= HandleMovePerformed;
         DomainEvents.UnRegister<OnBulletHit>(HandleBulletHit);
+        DomainEvents.UnRegister<OnItemGet>(HandleItemGet);
     }
 
 
@@ -67,11 +73,27 @@ public class TmpPlayer : MonoBehaviour
 
     }
 
+    void HandleMovePerformed(InputAction.CallbackContext ctx)
+    {
+        var vel = ctx.ReadValue<Vector2>().normalized * 5f;
+        GetComponent<Rigidbody2D>().velocity = vel;
+    }
+
 
     void HandleBulletHit(OnBulletHit e)
     {
-        if(e.Target==gameObject){
+        if (e.Target == gameObject)
+        {
             //GameOver
+        }
+    }
+
+
+    void HandleItemGet(OnItemGet e)
+    {
+        if (e.Getter == gameObject)
+        {
+            Debug.Log($"Get Item {e.Type.ToString()}");
         }
     }
 

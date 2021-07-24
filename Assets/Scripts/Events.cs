@@ -13,8 +13,10 @@ class OnBulletHit : IDomainEvent
 class OnItemGet : IDomainEvent
 {
     public ItemType Type { get; private set; }
-    public OnItemGet(ItemType type)
+    public GameObject Getter { get; private set; }
+    public OnItemGet(ItemType type, GameObject getter)
     {
         Type = type;
+        Getter = getter;
     }
 }

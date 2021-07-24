@@ -1,5 +1,6 @@
 using UnityEngine;
 using Scream.UniMO;
+using Lean.Pool;
 
 public class Item : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class Item : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            DomainEvents.Raise(new OnItemGet(type));
+            DomainEvents.Raise(new OnItemGet(type, other.gameObject));
+            LeanPool.Despawn(gameObject, Time.deltaTime);
         }
     }
 }
