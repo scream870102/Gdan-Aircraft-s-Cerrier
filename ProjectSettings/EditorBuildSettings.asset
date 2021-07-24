@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Start.unity
+    guid: 6c0d029eb4d178f44abaa50b7b8a63ec
   - enabled: 1
-    path: Assets/Developer/Scream870102/BulletTest.unity
-    guid: c05bc4208bea30741b5795d0568b06fd
+    path: Assets/Scenes/PlayerControl.unity
+    guid: 1d43862adc1b30e4b8a4324d9cfd8b5a
   - enabled: 1
     path: Assets/Scenes/Result.unity
     guid: afa19a049bc82ed4d9c48d723cd5c60b

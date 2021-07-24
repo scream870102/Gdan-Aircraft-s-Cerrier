@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 public class ResultController : MonoBehaviour
 {
     UiInput input = null;
+    [SerializeField] Text winnerText = null;
     void Awake()
     {
         input = new UiInput();
@@ -11,7 +13,7 @@ public class ResultController : MonoBehaviour
     {
         if (FlowController.Instance.Data is ResultData data)
         {
-            Debug.Log($"Winner is : {data.Winner}");
+            winnerText.text = $"{data.Winner}\nWin";
         }
     }
 
