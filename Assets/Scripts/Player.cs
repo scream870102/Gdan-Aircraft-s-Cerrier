@@ -96,7 +96,7 @@ public class Player : MonoBehaviour, IControllable
         if (e.Target == gameObject)
         {
             //ATTEND: GameOver 要呼叫OnPlayerDead
-            DomainEvents.Raise(new OnPlayerDead(null));
+            DomainEvents.Raise(new OnPlayerDead(this));
         }
     }
 
