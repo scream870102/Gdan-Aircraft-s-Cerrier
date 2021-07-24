@@ -3,55 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement
 {
     public float moveSpeed;
-    public Player Player;
-    public Vector2 Movement {get; private set;}
+    private Player player;
+    public Vector2 Movement {get; set;}
 
-    void OnEnable()
+    public PlayerMovement(Player player, float moveSpeed)
     {
-        Player.PlayerInput.GamePlay.Move.performed += OnMovementPerformed;
-        Player.PlayerInput.GamePlay.Move.canceled += OnMovementCanceled;
-        Debug.Log(Player);
-        Debug.Log(Player.PlayerInput.GamePlay);
-    }
-
-    void OnDisable()
-    {
-        Player.PlayerInput.GamePlay.Move.performed -= OnMovementPerformed;
-        Player.PlayerInput.GamePlay.Move.canceled -= OnMovementCanceled;
-    }
-
-    void Awake()
-    {
-        
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        this.player = player;
+        this.moveSpeed = moveSpeed;
     }
 
     public void Move()
     {
-        transform.Translate(Movement * moveSpeed * Time.deltaTime);
+        player.transform.Translate(Movement * moveSpeed * Time.deltaTime);
     }
 
-    private void OnMovementPerformed(InputAction.CallbackContext ctx)
+    public void OnMovementPerformed(InputAction.CallbackContext ctx)
     {
         Movement = ctx.ReadValue<Vector2>();
     }
 
-    private void OnMovementCanceled(InputAction.CallbackContext ctx)
+    public void OnMovementCanceled(InputAction.CallbackContext ctx)
     {
         Movement = Vector2.zero;
     }
+
 }
