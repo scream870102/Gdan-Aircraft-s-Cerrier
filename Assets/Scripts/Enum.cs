@@ -14,3 +14,13 @@ public enum SceneIndex
     Game,
     Result
 }
+
+public enum VFXType{
+    A,
+    B,
+}
+
+public enum SFXType{
+    C,
+    D,
+}

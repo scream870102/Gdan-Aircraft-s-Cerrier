@@ -47,7 +47,9 @@ public class GameController : MonoBehaviour
         {
             currentItemAmount++;
             var obj = LeanPool.Spawn(itemPrefab);
-            var pos = Math.RandomVec2(planeSize);
+            var x = Random.Range(-planeSize.x, planeSize.x);
+            var y = Random.Range(-planeSize.y, planeSize.y);
+            var pos = new Vector2(x,y);
             obj.transform.position = pos;
             var item = obj.GetComponent<Item>();
             item.InitItem();
