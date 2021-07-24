@@ -126,7 +126,7 @@ public class Bullet : MonoBehaviour, IControllable
     {
         var direction = ctx.ReadValue<Vector2>().normalized;
         var newVel = direction * velocity * (IsReversed ? -1f : 1f);
-        rb.velocity = newVel;
+        if(rb) rb.velocity = newVel;
 
     }
 }
