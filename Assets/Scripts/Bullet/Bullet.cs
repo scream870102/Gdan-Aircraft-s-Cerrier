@@ -14,9 +14,11 @@ public class Bullet : MonoBehaviour, IControllable
     Collider2D col = null;
     Transform tf = null;
     SpriteRenderer sr = null;
+    GameObject owner = null;
     public bool IsEnable { get; private set; } = false;
     public bool IsUnderControll { get; set; }
     public bool IsReversed { get; private set; } = false;
+
 
     void Awake()
     {
@@ -42,9 +44,10 @@ public class Bullet : MonoBehaviour, IControllable
     }
 
     //呼叫這個函式設定子彈生成的初始位置跟速度
-    public void EnableBullet(bool isEnable, Vector2 direction = default, Vector2 position = default)
+    public void EnableBullet(bool isEnable, GameObject owner = null, Vector2 direction = default, Vector2 position = default)
     {
         IsEnable = isEnable;
+        this.owner = owner;
         if (IsEnable)
         {
             tf.position = position;
@@ -66,14 +69,14 @@ public class Bullet : MonoBehaviour, IControllable
     //擊中任何的東西
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && other.gameObject != owner)
         {
             DomainEvents.Raise(new OnBulletHit(other.gameObject));
-            EnableBullet(false, Vector2.zero, Vector2.zero);
+            EnableBullet(false);
         }
         else if (other.gameObject.CompareTag("Wall"))
         {
-            EnableBullet(false, Vector2.zero, Vector2.zero);
+            EnableBullet(false);
         }
     }
 

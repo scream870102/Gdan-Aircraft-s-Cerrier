@@ -46,7 +46,7 @@ public class TmpPlayer : MonoBehaviour
     }
 
 
-    async void HandleBtnConfirmed(InputAction.CallbackContext ctx)
+    void HandleBtnConfirmed(InputAction.CallbackContext ctx)
     {
         foreach (var b in bullets)
         {
@@ -57,7 +57,7 @@ public class TmpPlayer : MonoBehaviour
             var obj = LeanPool.Spawn(prefab, transform);
             var bullet = obj.GetComponent<Bullet>();
             var dir = Math.RandomVec2(1f).normalized;
-            bullet.EnableBullet(true, dir, transform.position);
+            bullet.EnableBullet(true, gameObject, dir, transform.position);
             bullets.Add(bullet);
         }
 
@@ -84,7 +84,8 @@ public class TmpPlayer : MonoBehaviour
     {
         if (e.Target == gameObject)
         {
-            //GameOver
+            //ATTEND: GameOver 要呼叫OnPlayerDead
+            DomainEvents.Raise(new OnPlayerDead(null));
         }
     }
 

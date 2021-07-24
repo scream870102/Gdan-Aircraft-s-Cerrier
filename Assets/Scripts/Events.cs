@@ -4,10 +4,7 @@ using UnityEngine;
 class OnBulletHit : IDomainEvent
 {
     public GameObject Target { get; private set; }
-    public OnBulletHit(GameObject gameObject)
-    {
-        Target = gameObject;
-    }
+    public OnBulletHit(GameObject gameObject) => Target = gameObject;
 }
 
 class OnItemGet : IDomainEvent
@@ -19,4 +16,11 @@ class OnItemGet : IDomainEvent
         Type = type;
         Getter = getter;
     }
+}
+
+
+class OnPlayerDead : IDomainEvent
+{
+    public Player Player { get; private set; }
+    public OnPlayerDead(Player player) => Player = player;
 }
