@@ -108,7 +108,7 @@ public class PlayerFire
 
     public void HandleBulletControl(int index)
     {
-        if(!reverseTimer.IsFinished || bullets[index] == null || bullets.Count < index+1) return;
+        if(!reverseTimer.IsFinished || bullets.Count < index+1 || bullets[index] == null) return;
 
         if(currentControl == bullets[index])
         {

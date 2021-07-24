@@ -24,3 +24,9 @@ public enum SFXType{
     C,
     D,
 }
+
+public enum SpriteType{
+    Default,
+    GetItem,
+    Die,
+}

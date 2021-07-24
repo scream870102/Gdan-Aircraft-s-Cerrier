@@ -24,3 +24,8 @@ class OnPlayerDead : IDomainEvent
     public Player Player { get; private set; }
     public OnPlayerDead(Player player) => Player = player;
 }
+
+class OnPairComplete : IDomainEvent
+{
+    
+}

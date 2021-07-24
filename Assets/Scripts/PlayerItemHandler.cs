@@ -18,7 +18,7 @@ public class PlayerItemHandler
         switch(currentItem)
         {
             case ItemType.Deform:
-                 SetDeform();
+                SetDeform();
                 player.CurrentItem = ItemType.Empty;
             break;
 
@@ -93,8 +93,10 @@ public class PlayerItemHandler
     {
         player.IsDeform = true;
         player.PlayerFire.currentControl?.BulletDeform(true);
+        Debug.Log("a");
         await UniTask.Delay((int)(player.FireCd * 1000));
         player.IsDeform = false;
         player.PlayerFire.currentControl?.BulletDeform(false);
+        Debug.Log("b");
     }
 }   

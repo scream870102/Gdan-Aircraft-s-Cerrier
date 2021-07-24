@@ -6,6 +6,7 @@ using Scream.UniMO;
 
 public class Player : MonoBehaviour, IControllable
 {
+    public bool ActivePlayer;
     public float MoveSpeed;
     public GameObject BulletPrefab;
     public float FireCd;
@@ -28,6 +29,8 @@ public class Player : MonoBehaviour, IControllable
 
     void Awake()
     {
+        ActivePlayer = false;
+
         PlayerInput = new PlayerInput();
         PlayerInput.Enable();
 
@@ -75,9 +78,12 @@ public class Player : MonoBehaviour, IControllable
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement.Move();
-        PlayerFire.UpdateBullet();
-        control = IsUnderControll;
+        if(ActivePlayer)
+        {
+            PlayerMovement.Move();
+            PlayerFire.UpdateBullet();
+            control = IsUnderControll;
+        }
     }
 
 
