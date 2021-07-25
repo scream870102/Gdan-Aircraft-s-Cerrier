@@ -43,6 +43,7 @@ public class PlayerFire
             RemoveBullet();
             InitBullet();
             player.PlayerAnimator.SetTrigger("AttackTrigger");
+            FxController.Instance.SpawnSFX(SFXType.Attack);
             fireTimer.Reset();
         }
     }
