@@ -879,7 +879,7 @@ Transform:
   m_GameObject: {fileID: 523876090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1290,7 +1290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSpawnOffset: 5
   itemPrefab: {fileID: 1553617363653297942, guid: 17b38a564d10afa4e83cbc5183a24f96, type: 3}
-  planeSize: {x: 5, y: 5}
+  planeSize: {x: 8.5, y: 4}
   maxItemAmount: 2
   currentItemAmount: 0
 --- !u!4 &924830806
@@ -1492,7 +1492,7 @@ Transform:
   m_GameObject: {fileID: 1045042954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
