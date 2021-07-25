@@ -115,6 +115,9 @@ public class Player : MonoBehaviour, IControllable
         if (e.Target == gameObject)
         {
             //ATTEND: GameOver 要呼叫OnPlayerDead
+            PlayerIconControl.DieIcon();
+            ActivePlayer = false;
+            PlayerMovement.Movement = Vector2.zero;
             DomainEvents.Raise(new OnPlayerDead(this));
         }
     }
