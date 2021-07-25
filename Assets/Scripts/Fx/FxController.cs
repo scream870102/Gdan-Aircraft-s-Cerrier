@@ -15,11 +15,12 @@ public class FxController : TSingletonMonoBehavior<FxController>
     [SerializeField] new AudioSource audio = null;
     protected override void Awake()
     {
-        base.Awake();
         itemFxDic = itemContainer.ToDictionary();
         vfxDic = vfxContainer.ToDictionary();
         sfxDic = sfxContainer.ToDictionary();
+        Debug.Log(gameObject == null);
         audio = GetComponent<AudioSource>();
+        base.Awake();
 
     }
 
