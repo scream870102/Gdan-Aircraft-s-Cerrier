@@ -15,5 +15,13 @@ MonoBehaviour:
   Objects:
   - Key: 0
     Object:
-      Clip: {fileID: 8300000, guid: 7ad164328b1b9f94fb7c1bd84140c1c1, type: 3}
+      Clip: {fileID: 8300000, guid: 1bd3e59704976f346824cf9c42ec5210, type: 3}
+      Volume: 1
+  - Key: 1
+    Object:
+      Clip: {fileID: 8300000, guid: 5ca8b9d55ecd0f84da7c61784e87e5e4, type: 3}
+      Volume: 1
+  - Key: 2
+    Object:
+      Clip: {fileID: 8300000, guid: 78a7a63d4667ab047ae6e043eb3323bc, type: 3}
       Volume: 1

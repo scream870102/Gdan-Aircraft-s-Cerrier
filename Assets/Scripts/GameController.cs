@@ -87,11 +87,13 @@ public class GameController : MonoBehaviour
     {
         DomainEvents.Register<OnItemGet>(HandleItemGet);
         DomainEvents.Register<OnPlayerDead>(HandlePlayerDead);
+        DomainEvents.Register<OnPairComplete>(HandlePairCompleted);
     }
 
     void OnDisable()
     {
         DomainEvents.UnRegister<OnItemGet>(HandleItemGet);
         DomainEvents.UnRegister<OnPlayerDead>(HandlePlayerDead);
+        DomainEvents.UnRegister<OnPairComplete>(HandlePairCompleted);
     }
 }
