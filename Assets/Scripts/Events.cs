@@ -27,5 +27,5 @@ class OnPlayerDead : IDomainEvent
 
 class OnPairComplete : IDomainEvent
 {
-    
+    public OnPairComplete(){}
 }

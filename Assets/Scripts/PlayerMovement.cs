@@ -29,7 +29,7 @@ public class PlayerMovement
              
             if(rb.velocity.x != 0 || rb.velocity.y != 0) {
                 player.PlayerAnimator.SetBool("IsMove", true);
-                player.PlayerAnimator.SetFloat("MoveHorizontal", rb.velocity.x);
+                player.PlayerAnimator.SetFloat("MoveHorizontal", isLeft ? -rb.velocity.x : rb.velocity.x);
                 player.PlayerAnimator.SetFloat("MoveVertical", rb.velocity.y);
             }
             else

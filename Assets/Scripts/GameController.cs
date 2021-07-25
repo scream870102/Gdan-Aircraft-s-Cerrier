@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
 #endif
     int currentItemAmount;
     ScaledTimer timer = null;
-
+    bool isPairCompleted = false;
 
     void GameEnd(Player winner)
     {
@@ -39,17 +39,18 @@ public class GameController : MonoBehaviour
         {
             players.Add(p);
         }
+        isPairCompleted = false;
     }
 
     void Update()
     {
-        if (timer.IsFinished && maxItemAmount > currentItemAmount)
+        if (isPairCompleted && timer.IsFinished && maxItemAmount > currentItemAmount)
         {
             currentItemAmount++;
             var obj = LeanPool.Spawn(itemPrefab);
             var x = Random.Range(-planeSize.x, planeSize.x);
             var y = Random.Range(-planeSize.y, planeSize.y);
-            var pos = new Vector2(x,y);
+            var pos = new Vector2(x, y);
             obj.transform.position = pos;
             var item = obj.GetComponent<Item>();
             item.InitItem();
@@ -75,6 +76,11 @@ public class GameController : MonoBehaviour
             Debug.Log(players.First().name);
             GameEnd(players.First());
         }
+    }
+
+    void HandlePairCompleted(OnPairComplete e)
+    {
+        isPairCompleted = true;
     }
 
     void OnEnable()

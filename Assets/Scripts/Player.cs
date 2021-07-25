@@ -55,6 +55,7 @@ public class Player : MonoBehaviour, IControllable
 
         PlayerInput.GamePlay.Item.performed += PlayerItemHandler.OnItemPerformed;
 
+        DomainEvents.Register<OnPairComplete>(SetPlayerActive);
         DomainEvents.Register<OnBulletHit>(HandleBulletHit);
         DomainEvents.Register<OnItemGet>(HandleItemGet);
     }
@@ -68,6 +69,7 @@ public class Player : MonoBehaviour, IControllable
 
         PlayerInput.GamePlay.Item.performed -= PlayerItemHandler.OnItemPerformed;
 
+        DomainEvents.UnRegister<OnPairComplete>(SetPlayerActive);
         DomainEvents.UnRegister<OnBulletHit>(HandleBulletHit);
         DomainEvents.UnRegister<OnItemGet>(HandleItemGet);
     }
@@ -129,4 +131,8 @@ public class Player : MonoBehaviour, IControllable
         PlayerItemHandler.AutoUseDebuffItem(e.Type);
     }
 
+    private void SetPlayerActive(OnPairComplete e)
+    {
+        ActivePlayer = true;
+    }
 }

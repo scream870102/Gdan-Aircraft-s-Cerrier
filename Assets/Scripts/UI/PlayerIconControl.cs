@@ -27,4 +27,6 @@ public class PlayerIconControl : MonoBehaviour
             IconImage.sprite = iconDic[SpriteType.GetItem];
         }
     }
+
+    public void DieIcon() =>  IconImage.sprite = iconDic[SpriteType.Die]; 
 }
