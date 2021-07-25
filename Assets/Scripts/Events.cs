@@ -27,5 +27,10 @@ class OnPlayerDead : IDomainEvent
 
 class OnPairComplete : IDomainEvent
 {
-    public OnPairComplete(){}
+    public OnPairComplete() { }
+}
+
+class OnGameEnd : IDomainEvent
+{
+    public OnGameEnd() { }
 }

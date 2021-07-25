@@ -76,6 +76,7 @@ public class PlayerFire
             {
                 var obj = LeanPool.Spawn(prefab);
                 var bullet = obj.GetComponent<Bullet>();
+                bullet.SetBulletText((i+1).ToString());
                 var dir = Quaternion.Euler(0, 0, -(90 / (bulletAmount-1)) * i) * startPoint;
                 bullet.EnableBullet(true, player.gameObject, dir, player.transform.position);
                 bullets.Add(bullet);
@@ -137,7 +138,7 @@ public class PlayerFire
         reverseTimer.Reset();
     }
 
-    public float GetReverseTimer() => reverseTimer.Remain;
+    public float GetReverseTimer() => reverseTimer.Remain01;
     public Bullet GetBullet() => currentControl;
 
 }

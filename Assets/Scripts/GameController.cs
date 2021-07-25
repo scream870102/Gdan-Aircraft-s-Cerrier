@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     {
         //載入結算畫面
         FlowController.Instance.LoadScene(SceneIndex.Result, new ResultData(winner.name));
+        DomainEvents.Raise(new OnGameEnd());
     }
 
     void Awake()
