@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Lean.Pool;
 using Scream.UniMO;
-using Scream.UniMO.Editor;
 using UnityEngine.InputSystem;
 
 public class PlayerFire 
