@@ -21,7 +21,7 @@ public class Item : MonoBehaviour
 
     public void InitItem()
     {
-        type = (ItemType)Random.Range(1, System.Enum.GetNames(typeof(ItemType)).Length-1);
+        type = (ItemType)Random.Range(1, System.Enum.GetNames(typeof(ItemType)).Length - 1);
         sr.sprite = spriteDic[type];
     }
 
@@ -30,7 +30,8 @@ public class Item : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             DomainEvents.Raise(new OnItemGet(type, other.gameObject));
-            FxController.Instance.SpawnItemFx(type,other.transform.position);
+            FxController.Instance.SpawnItemFx(type, other.transform.position);
+            FxController.Instance.SpawnSFX(SFXType.ItemGet);
             LeanPool.Despawn(gameObject, Time.deltaTime);
         }
     }

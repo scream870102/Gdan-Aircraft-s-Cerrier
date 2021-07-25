@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 3
-  normalSprite: {fileID: 21300000, guid: 469db1ae573a4e74eb864a0b04d5680e, type: 3}
-  secondSprite: {fileID: 21300000, guid: 250d7303131580b4492bbc7aff065c70, type: 3}
+  normalSprite: {fileID: 21300000, guid: 5f6e81399d8cfdc47a92f74144af6f89, type: 3}
+  secondSprite: {fileID: 21300000, guid: 50d78fee0b0371144832fded6da444b1, type: 3}
 --- !u!50 &2350449747344507039
 Rigidbody2D:
   serializedVersion: 4
