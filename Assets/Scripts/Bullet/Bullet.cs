@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Lean.Pool;
+using TMPro;
 
 public class Bullet : MonoBehaviour, IControllable
 {
@@ -15,6 +16,7 @@ public class Bullet : MonoBehaviour, IControllable
     Transform tf = null;
     SpriteRenderer sr = null;
     GameObject owner = null;
+    TextMeshPro bulletText = null;
     public bool IsEnable { get; private set; } = false;
     public bool IsUnderControll { get; set; }
     public bool IsReversed { get; private set; } = false;
@@ -25,6 +27,7 @@ public class Bullet : MonoBehaviour, IControllable
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
+        bulletText = GetComponentInChildren<TextMeshPro>();
         tf = gameObject.transform;
     }
 
@@ -133,5 +136,10 @@ public class Bullet : MonoBehaviour, IControllable
         var newVel = direction * velocity * (IsReversed ? -1f : 1f);
         if (rb) rb.velocity = newVel;
 
+    }
+
+    public void SetBulletText(string s)
+    {
+        if(bulletText) bulletText.text = s;
     }
 }

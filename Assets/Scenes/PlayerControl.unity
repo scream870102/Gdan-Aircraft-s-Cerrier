@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Push Any Key
+  m_Text: Press Any Key
 --- !u!222 &175455474
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1377,7 +1377,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Push Any Key
+  m_Text: Press Any Key
 --- !u!222 &992504995
 CanvasRenderer:
   m_ObjectHideFlags: 0
