@@ -12,7 +12,7 @@ public class FxController : TSingletonMonoBehavior<FxController>
     Dictionary<ItemType, GameObject> itemFxDic = null;
     Dictionary<VFXType, GameObject> vfxDic = null;
     Dictionary<SFXType, AudioInfo> sfxDic = null;
-    new AudioSource audio = null;
+    [SerializeField] new AudioSource audio = null;
     protected override void Awake()
     {
         base.Awake();
@@ -26,18 +26,18 @@ public class FxController : TSingletonMonoBehavior<FxController>
     void Update()
     {
 #if UNITY_EDITOR
-        if (Keyboard.current.fKey.wasPressedThisFrame)
-        {
-            SpawnItemFx(ItemType.Multicon, transform.position);
-        }
-        if (Keyboard.current.gKey.wasPressedThisFrame)
-        {
-            SpawnVFX(VFXType.A, transform.position);
-        }
-        if (Keyboard.current.hKey.wasPressedThisFrame)
-        {
-            SpawnSFX(SFXType.C);
-        }
+        // if (Keyboard.current.fKey.wasPressedThisFrame)
+        // {
+        //     SpawnItemFx(ItemType.Multicon, transform.position);
+        // }
+        // if (Keyboard.current.gKey.wasPressedThisFrame)
+        // {
+        //     SpawnVFX(VFXType.A, transform.position);
+        // }
+        // if (Keyboard.current.hKey.wasPressedThisFrame)
+        // {
+        //     SpawnSFX(SFXType.C);
+        // }
 #endif
     }
 
@@ -58,7 +58,6 @@ public class FxController : TSingletonMonoBehavior<FxController>
     public void SpawnSFX(SFXType type)
     {
         var info = sfxDic[type];
-        Debug.Log(info.Clip.name);
         audio.volume = info.Volume;
         audio.PlayOneShot(info.Clip);
     }

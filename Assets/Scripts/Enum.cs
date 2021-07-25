@@ -15,17 +15,22 @@ public enum SceneIndex
     Result
 }
 
-public enum VFXType{
+public enum VFXType
+{
     A,
     B,
 }
 
-public enum SFXType{
-    C,
-    D,
+[System.Serializable]
+public enum SFXType
+{
+    Attack,
+    Damage,
+    ItemGet,
 }
 
-public enum SpriteType{
+public enum SpriteType
+{
     Default,
     GetItem,
     Die,
