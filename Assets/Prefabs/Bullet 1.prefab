@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa58726a6f9c92649b6d699188fcf553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 3
+  velocity: 4
   normalSprite: {fileID: 21300000, guid: c0aa3276e823fd94aa28d50c1506c8c1, type: 3}
   secondSprite: {fileID: 21300000, guid: 589df1e5abacb454796b439cbcc41a12, type: 3}
 --- !u!50 &2350449747344507039

@@ -809,9 +809,9 @@ MonoBehaviour:
   ActivePlayer: 0
   MoveSpeed: 8
   BulletPrefab: {fileID: 1949437216949056270, guid: a56899f9f296390469345011b4a6f416, type: 3}
-  FireCd: 3
-  BulletAmount: 3
-  RadiusBetweenBullet: 10
+  FireCd: 6
+  BulletAmount: 4
+  RadiusBetweenBullet: 20
   ReverseCd: 2
   PlayerIconControl: {fileID: 1562317958}
   PlayerAnimator: {fileID: 523876096}
@@ -1422,7 +1422,7 @@ MonoBehaviour:
   ActivePlayer: 0
   MoveSpeed: 8
   BulletPrefab: {fileID: 1949437216949056270, guid: 757deb606df57624197ebd57375d356f, type: 3}
-  FireCd: 4
+  FireCd: 6
   BulletAmount: 4
   RadiusBetweenBullet: 30
   ReverseCd: 2
