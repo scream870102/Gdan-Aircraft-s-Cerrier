@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Scream.UniMO;
+using Cysharp.Threading.Tasks;
 
 #if UNITY_EDITOR
 using Scream.UniMO.Editor;
@@ -24,9 +25,10 @@ public class GameController : MonoBehaviour
     ScaledTimer timer = null;
     bool isPairCompleted = false;
 
-    void GameEnd(Player winner)
+    async void GameEnd(Player winner)
     {
         //載入結算畫面
+        await UniTask.Delay(2000);
         FlowController.Instance.LoadScene(SceneIndex.Result, new ResultData(winner.name));
         DomainEvents.Raise(new OnGameEnd());
     }
