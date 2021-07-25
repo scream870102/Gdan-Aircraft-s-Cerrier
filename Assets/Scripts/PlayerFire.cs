@@ -137,7 +137,7 @@ public class PlayerFire
         reverseTimer.Reset();
     }
 
-    public float GetReverseTimer() => reverseTimer.Remain;
+    public float GetReverseTimer() => reverseTimer.Remain01;
     public Bullet GetBullet() => currentControl;
 
 }
