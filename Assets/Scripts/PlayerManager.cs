@@ -29,8 +29,8 @@ public class PlayerManager : MonoBehaviour
 
         Player1PairText.enabled = true;
         Player2PairText.enabled = true;
-        Player1PairText.text = "Push Any Key";
-        Player2PairText.text = "Push Any Key";
+        Player1PairText.text = "Press Any Key";
+        Player2PairText.text = "Press Any Key";
     }
 
     void OnUnpairedDeviceUsed (InputControl c, InputEventPtr e) {
