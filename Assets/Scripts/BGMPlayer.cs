@@ -9,8 +9,10 @@ public class BGMPlayer : TSingletonMonoBehavior<BGMPlayer>
     // Start is called before the first frame update
     protected override void Awake()
     {
-        if (BGMPlayer.Instance != this) DestroyImmediate(gameObject);
-        base.Awake();
+        // base.Awake();
+        if (Instance == null) Instance = this ;
+        if (Instance == this) DontDestroyOnLoad(this);
+        else DestroyImmediate(gameObject);
     }
     void Start()
     {
