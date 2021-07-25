@@ -24,8 +24,20 @@ public class PlayerMovement
 
     public void Move()
     {
-        if(rb) rb.velocity = (IsReversed ? -Movement : Movement) * moveSpeed;
-        // player.transform.Translate(Movement * moveSpeed * Time.deltaTime);
+        if(rb) {
+            rb.velocity = (IsReversed ? -Movement : Movement) * moveSpeed;
+             
+            if(rb.velocity.x != 0 || rb.velocity.y != 0) {
+                player.PlayerAnimator.SetBool("IsMove", true);
+                player.PlayerAnimator.SetFloat("MoveHorizontal", rb.velocity.x);
+                player.PlayerAnimator.SetFloat("MoveVertical", rb.velocity.y);
+            }
+            else
+            {
+                player.PlayerAnimator.SetBool("IsMove", false);
+            }
+        }
+        
     }
 
     public void OnMovementPerformed(InputAction.CallbackContext ctx)

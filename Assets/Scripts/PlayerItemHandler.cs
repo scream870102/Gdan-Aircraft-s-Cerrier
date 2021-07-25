@@ -18,11 +18,13 @@ public class PlayerItemHandler
         switch(currentItem)
         {
             case ItemType.Deform:
+                player.PlayerIconControl.ChangeIcon(ItemType.Empty);
                 SetDeform();
                 player.CurrentItem = ItemType.Empty;
             break;
 
             case ItemType.Rever:
+                player.PlayerIconControl.ChangeIcon(ItemType.Empty);
                 SetReverse();
                 player.CurrentItem = ItemType.Empty;
             break;
@@ -39,6 +41,7 @@ public class PlayerItemHandler
             case ItemType.Multicon:
                 if(player.PlayerFire.bullets.Count <= 0) 
                     break;
+                player.PlayerIconControl.ChangeIcon(ItemType.Empty);
                 foreach(var bul in player.PlayerFire.bullets)
                 {
                     bul.EnableControll(true, player.PlayerInput);
@@ -48,6 +51,7 @@ public class PlayerItemHandler
             break;
             
             case ItemType.Invi:
+                player.PlayerIconControl.ChangeIcon(ItemType.Empty);
                 SetPlayerInvi();
                 player.CurrentItem = ItemType.Empty;
             break;
@@ -55,6 +59,7 @@ public class PlayerItemHandler
             case ItemType.Pendulum:
                 if(player.PlayerFire.bullets.Count <= 0)
                     break;
+                player.PlayerIconControl.ChangeIcon(ItemType.Empty);
                 foreach(var bul in player.PlayerFire.bullets)
                 {
                     bul.PendulumBullet(3f, 1f);

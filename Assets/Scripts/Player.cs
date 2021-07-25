@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.Users;
 using Scream.UniMO;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IControllable
 {
@@ -13,6 +14,8 @@ public class Player : MonoBehaviour, IControllable
     public int BulletAmount;
     public float RadiusBetweenBullet;
     public float ReverseCd;
+    public PlayerIconControl PlayerIconControl;
+    public Animator PlayerAnimator;
 
     public InputUser InputUser {get; set;}
     public PlayerInput PlayerInput {get; set;}
@@ -121,6 +124,7 @@ public class Player : MonoBehaviour, IControllable
         {
             Debug.Log($"Get Item {e.Type.ToString()}");
             CurrentItem = e.Type;
+            PlayerIconControl.ChangeIcon(e.Type);
         }
         PlayerItemHandler.AutoUseDebuffItem(e.Type);
     }

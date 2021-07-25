@@ -42,6 +42,7 @@ public class PlayerFire
         {
             RemoveBullet();
             InitBullet();
+            player.PlayerAnimator.SetTrigger("AttackTrigger");
             fireTimer.Reset();
         }
     }
@@ -55,7 +56,6 @@ public class PlayerFire
                 bullets[i].EnableControll(false, player.PlayerInput);
                 player.EnableControll(true, player.PlayerInput);
                 currentControl = null;
-                Debug.Log("removeBullet");
             }
             var bul = bullets[i];
             bullets.RemoveAt(i);
@@ -117,7 +117,6 @@ public class PlayerFire
 
             bullets[index].EnableControll(false, player.PlayerInput);
             player.EnableControll(true, player.PlayerInput);
-            Debug.Log("reverse player");
             currentControl = null;
         }
         else
@@ -139,4 +138,5 @@ public class PlayerFire
 
     public float GetReverseTimer() => reverseTimer.Remain;
     public Bullet GetBullet() => currentControl;
+
 }
