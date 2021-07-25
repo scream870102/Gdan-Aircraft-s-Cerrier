@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
+using Scream.UniMO;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -38,16 +39,20 @@ public class PlayerManager : MonoBehaviour
         if (!player1.InputUser.valid) {
             player1.InputUser = InputUser.PerformPairingWithDevice (c.device);
             player1.InputUser.AssociateActionsWithUser (player1.PlayerInput);
-            player1.ActivePlayer = true;
+            // player1.ActivePlayer = true;
             Debug.Log ("Pairing player1 with " + c.device.name);
             Player1PairText.enabled = false;
         }
         else if (!player2.InputUser.valid) {
             player2.InputUser = InputUser.PerformPairingWithDevice (c.device);
             player2.InputUser.AssociateActionsWithUser (player2.PlayerInput);
-            player2.ActivePlayer = true;
+            // player2.ActivePlayer = true;
             Debug.Log ("Pairing player2 with " + c.device.name);
             Player2PairText.enabled = false;
+        }
+        if(player1.InputUser.valid && player2.InputUser.valid)
+        {
+            DomainEvents.Raise<OnPairComplete>(null);
         }
     }
 }
